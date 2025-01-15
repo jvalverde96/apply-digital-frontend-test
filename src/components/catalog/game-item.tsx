@@ -1,3 +1,6 @@
+'use client';
+
+import useCartContext from '@/context/useCartContext';
 import { Game } from '@/utils/endpoint';
 import Image from 'next/image';
 
@@ -6,6 +9,17 @@ interface GameItemProps {
 }
 
 const GameItem = ({ game }: GameItemProps) => {
+  const { addItem, removeItem, itemExists } = useCartContext();
+
+  const handleAddOrRemove = () => {
+    const { id } = game;
+    if (itemExists(id)) {
+      removeItem(id);
+    } else {
+      addItem(game);
+    }
+  };
+
   return (
     <div className="flex flex-col w-[327px] sm:w-[380px] h-[436px] border-[0.5px] rounded-2xl p-6 gap-5">
       <Image
@@ -25,8 +39,11 @@ const GameItem = ({ game }: GameItemProps) => {
         </div>
       </div>
 
-      <button className="px-6 py-2 border border-black font-bold rounded-md">
-        ADD TO CART
+      <button
+        onClick={handleAddOrRemove}
+        className="px-6 py-2 border border-black font-bold rounded-md"
+      >
+        {!itemExists(game.id) ? 'ADD TO CART' : 'REMOVE FROM CART'}
       </button>
     </div>
   );

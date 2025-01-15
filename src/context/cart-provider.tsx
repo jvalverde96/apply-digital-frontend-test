@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { CartContext } from './cart-context';
 import { Game } from '@/utils/endpoint';
@@ -22,8 +24,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
+  const itemExists = (id: string) =>
+    cart.findIndex((game) => game.id === id) !== -1;
+
   return (
-    <CartContext.Provider value={{ cart, addItem, removeItem }}>
+    <CartContext.Provider value={{ cart, addItem, removeItem, itemExists }}>
       {children}
     </CartContext.Provider>
   );

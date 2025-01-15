@@ -1,3 +1,5 @@
+'use client';
+
 import { Game } from '@/utils/endpoint';
 import { createContext } from 'react';
 
@@ -8,6 +10,7 @@ export interface CartContext {
   cart: Game[];
   addItem: (game: Game) => void;
   removeItem: (id: string) => void;
+  itemExists: (id: string) => boolean;
 }
 
 export const CartContext = createContext<CartContext | undefined>(undefined);
