@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       colors: {
         header: '#EEEEEE',
-        footer: '#654321',
+        secondary: '#585660',
         'text-secondary': '#737373',
       },
       backgroundImage: {
