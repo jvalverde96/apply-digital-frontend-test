@@ -1,11 +1,19 @@
+'use client';
+
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 const Navbar = () => {
+  const searchParams = useSearchParams();
+  const queryParams = new URLSearchParams(searchParams?.toString());
   return (
-    <header className="bg-header">
-      <nav className="h-[64px] flex items-center justify-between mx-auto px-6 py-5 lg:px-32 lg:py-5 lg:max-w-[1536px]">
-        <Link href="/" className="text-2xl leading-6 tracking-[0.4px]">
+    <header className="bg-header sticky top-0 left-0 z-10">
+      <nav className="h-[64px] flex items-center justify-between custom-container">
+        <Link
+          href={`/?${queryParams}`}
+          className="text-2xl leading-6 tracking-[0.4px]"
+        >
           Gamer Shop
         </Link>
         <Link href="/cart">
