@@ -1,9 +1,5 @@
-import Catalog from '@/components/catalog/catalog';
+import { redirect } from 'next/navigation';
 
 export default async function Home() {
-  return (
-    <main>
-      <Catalog />
-    </main>
-  );
+  redirect('/catalog');
 }

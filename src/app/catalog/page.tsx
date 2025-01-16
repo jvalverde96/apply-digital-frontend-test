@@ -1,13 +1,13 @@
-import CatalogHeader from './header';
-import GameList from './game-list';
+import GameList from '@/components/catalog/game-list';
+import CatalogHeader from '@/components/catalog/header';
 
 const Catalog = () => {
   return (
-    <div>
+    <>
       <CatalogHeader />
       <div className="border"></div>
       <GameList />
-    </div>
+    </>
   );
 };
 

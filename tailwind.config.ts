@@ -12,6 +12,7 @@ const config: Config = {
       colors: {
         header: '#EEEEEE',
         secondary: '#585660',
+        'text-primary': '#3B3B3B',
         'text-secondary': '#737373',
       },
       backgroundImage: {
