@@ -1,20 +1,21 @@
 'use client';
 
+import { useGenreContext } from '@/context/genre/useGenreContext';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 
 const Footer = () => {
-  const searchParams = useSearchParams();
-  const queryParams = new URLSearchParams(searchParams?.toString());
+  const { selectedGenre } = useGenreContext();
+
+  const href = useMemo(() => {
+    return `catalog/${selectedGenre ? `?genre=${selectedGenre}` : ''}`;
+  }, [selectedGenre]);
 
   return (
     <footer className="bg-secondary bottom-0 left-0 right-0 mt-auto">
       <div className="custom-container h-[172px] flex items-center justify-center">
-        <Link
-          href={`catalog/?${queryParams}`}
-          className="text-2xl leading-6 tracking-[0.4px]"
-        >
+        <Link href={href} className="text-2xl leading-6 tracking-[0.4px]">
           <Image
             src="/apply-digital-logo.png"
             alt=""

@@ -1,13 +1,14 @@
 'use client';
 
+import { useGenreContext } from '@/context/genre/useGenreContext';
 import { availableFilters } from '@/utils/endpoint';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 
 const CatalogHeader = () => {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { setGenre } = useGenreContext();
 
   const handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { value: selectedGenre } = event.target;
@@ -15,17 +16,16 @@ const CatalogHeader = () => {
     const queryParams = new URLSearchParams(searchParams?.toString());
 
     if (selectedGenre !== 'all') {
+      localStorage.setItem('selectedGenre', selectedGenre);
       queryParams.set('genre', selectedGenre);
+      setGenre(selectedGenre);
     } else {
       queryParams.delete('genre');
+      localStorage.removeItem('selectedGenre');
+      setGenre(null);
     }
 
-    const safePathname = pathname || '/';
-    const url = queryParams.toString()
-      ? `${safePathname}?${queryParams}`
-      : safePathname;
-
-    router.push(url);
+    router.push(`catalog/?${queryParams}`);
   };
 
   return (
@@ -37,7 +37,7 @@ const CatalogHeader = () => {
         <select
           value={searchParams?.get('genre') || 'all'}
           onChange={handleGenreChange}
-          className="text-gray-700 border rounded-md p-1"
+          className="text-gray-700 rounded-md p-1"
         >
           <option value="all">All</option>
           {availableFilters.map((option) => (

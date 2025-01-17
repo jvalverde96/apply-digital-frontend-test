@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navbar/navbar';
-import { CartProvider } from '@/context/cart-provider';
+import { CartProvider } from '@/context/cart/cart-provider';
 import Footer from '@/components/footer/footer';
+import { GenreProvider } from '@/context/genre/genre-provider';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -28,9 +29,11 @@ export default function RootLayout({
         className={`${poppins.className} flex flex-col min-h-screen text-text-primary`}
       >
         <CartProvider>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <GenreProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </GenreProvider>
         </CartProvider>
       </body>
     </html>

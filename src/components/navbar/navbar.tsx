@@ -1,19 +1,21 @@
 'use client';
 
+import { useGenreContext } from '@/context/genre/useGenreContext';
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 
 const Navbar = () => {
-  const searchParams = useSearchParams();
-  const queryParams = new URLSearchParams(searchParams?.toString());
+  const { selectedGenre } = useGenreContext();
+
+  const href = useMemo(() => {
+    return `catalog/${selectedGenre ? `?genre=${selectedGenre}` : ''}`;
+  }, [selectedGenre]);
+
   return (
     <header className="bg-header sticky top-0 left-0 z-10">
       <nav className="h-[64px] flex items-center justify-between custom-container">
-        <Link
-          href={`catalog/?${queryParams}`}
-          className="text-2xl leading-6 tracking-[0.4px]"
-        >
+        <Link href={href} className="text-2xl leading-6 tracking-[0.4px]">
           Gamer Shop
         </Link>
         <Link href="/cart">
