@@ -3,6 +3,7 @@
 import useCartContext from '@/context/cart/useCartContext';
 import { Game } from '@/utils/endpoint';
 import Image from 'next/image';
+import Button from '../shared/button';
 
 interface GameItemProps {
   game: Game;
@@ -39,12 +40,12 @@ const GameItem = ({ game }: GameItemProps) => {
         </div>
       </div>
 
-      <button
+      <Button
         onClick={handleAddOrRemove}
         className="px-6 py-2 border border-black font-bold rounded-md"
       >
         {!itemExists(game.id) ? 'ADD TO CART' : 'REMOVE FROM CART'}
-      </button>
+      </Button>
     </div>
   );
 };

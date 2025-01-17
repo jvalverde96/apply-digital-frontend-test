@@ -2,6 +2,7 @@ import useCartContext from '@/context/cart/useCartContext';
 import React from 'react';
 import OrderDetail from './order-detail';
 import { Game } from '@/utils/endpoint';
+import Button from '../shared/button';
 
 const OrderSummary = () => {
   const { cart } = useCartContext();
@@ -34,9 +35,9 @@ const OrderSummary = () => {
           <p>${calculateOrderTotal()}</p>
         </div>
       </div>
-      <button className="bg-secondary rounded-lg text-base text-white px-6 py-4">
+      <Button className="px-6 py-4 bg-secondary text-white text-base rounded-lg">
         Checkout
-      </button>
+      </Button>
     </div>
   );
 };

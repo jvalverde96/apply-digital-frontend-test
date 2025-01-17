@@ -4,8 +4,12 @@ import { allGames } from '@/utils/endpoint';
 import GameItem from './game-item';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
+import Spinner from '../shared/spinner';
+import Button from '../shared/button';
 
 const GameList = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   // The instructions don't specify the exact number of records to display in the grid,
   // but based on the mockup, I'm assuming 12 items should be shown initially.
   const [gamesToShow, setGamesToShow] = useState(12);
@@ -29,8 +33,20 @@ const GameList = () => {
   }, [searchParams]);
 
   const handleLoadMore = () => {
-    setGamesToShow((previousValue) => previousValue + 12);
+    setIsLoading(true);
+
+    // Simulate a real-life loading scenario
+    setTimeout(() => {
+      setGamesToShow((previousValue) => previousValue + 12);
+      setIsLoading(false);
+    }, 2000);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Simulate a real-life loading scenario
+  }, []);
 
   return (
     <div className="custom-container flex flex-col gap-12 py-12">
@@ -44,14 +60,15 @@ const GameList = () => {
       {/* Load More Button */}
       {displayedGames.length < filteredGames.length && (
         <div className="flex items-start justify-center 2xl:justify-start">
-          <button
+          <Button
             onClick={handleLoadMore}
-            className="w-[327px] md:w-auto px-6 py-3 text-base text-white rounded-lg bg-secondary"
+            className="w-[327px] md:w-auto px-6 py-3 bg-secondary text-white text-base rounded-lg"
           >
             SEE MORE
-          </button>
+          </Button>
         </div>
       )}
+      <Spinner isLoading={isLoading} />
     </div>
   );
 };
