@@ -1,6 +1,6 @@
 'use client';
 
-import useCartContext from '@/context/useCartContext';
+import useCartContext from '@/context/cart/useCartContext';
 import { Game } from '@/utils/endpoint';
 import Image from 'next/image';
 

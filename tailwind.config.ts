@@ -37,8 +37,8 @@ const config: Config = {
           'padding-top': '1.25rem', // py-5
           'padding-bottom': '1.25rem', // py-5
           '@screen lg': {
-            'padding-left': '8rem', // lg:px-32
-            'padding-right': '8rem', // lg:px-32
+            'padding-left': '4rem', // lg:px-32
+            'padding-right': '4rem', // lg:px-32
             'padding-top': '1.25rem', // lg:py-5
             'padding-bottom': '1.25rem', // lg:py-5
             'max-width': '1536px', // lg:max-w-[1536px]

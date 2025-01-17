@@ -46,7 +46,7 @@ const GameList = () => {
         <div className="flex items-start justify-center 2xl:justify-start">
           <button
             onClick={handleLoadMore}
-            className="w-[327px] md:w-auto px-6 py-3 bg-blue-500 text-base text-white rounded-lg bg-secondary"
+            className="w-[327px] md:w-auto px-6 py-3 text-base text-white rounded-lg bg-secondary"
           >
             SEE MORE
           </button>
