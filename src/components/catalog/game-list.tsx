@@ -1,74 +1,65 @@
 'use client';
 
-import { allGames } from '@/utils/endpoint';
+import { Game } from '@/utils/endpoint';
 import GameItem from './game-item';
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Spinner from '../shared/spinner';
-import Button from '../shared/button';
+import { fetchGames } from '@/services/game-service';
+import { useGenreContext } from '@/context/genre/useGenreContext';
+import Pagination from '../shared/pagination';
 
 const GameList = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [games, setGames] = useState<Game[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // The instructions don't specify the exact number of records to display in the grid,
-  // but based on the mockup, I'm assuming 12 items should be shown initially.
-  const [gamesToShow, setGamesToShow] = useState(12);
+  const { selectedGenre } = useGenreContext();
 
-  const searchParams = useSearchParams();
-
-  const filteredGames = useMemo(() => {
-    const genre = searchParams?.get('genre');
-    // Filter games by genre if a valid genre is selected
-    return genre && genre !== 'all'
-      ? allGames.filter((game) => game.genre.toLocaleLowerCase() === genre)
-      : allGames;
-  }, [searchParams]);
-
-  const displayedGames = useMemo(() => {
-    return filteredGames.slice(0, gamesToShow);
-  }, [filteredGames, gamesToShow]);
-
-  useEffect(() => {
-    setGamesToShow(12);
-  }, [searchParams]);
-
-  const handleLoadMore = () => {
-    setIsLoading(true);
-
-    // Simulate a real-life loading scenario
-    setTimeout(() => {
-      setGamesToShow((previousValue) => previousValue + 12);
-      setIsLoading(false);
-    }, 2000);
+  const onPageChange = (page: number) => {
+    setCurrentPage(page);
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // Simulate a real-life loading scenario
-  }, []);
+    const loadGames = async () => {
+      setIsLoading(true);
+      try {
+        const { games: data, totalPages } = await fetchGames(
+          selectedGenre,
+          selectedGenre && selectedGenre !== 'all' ? 1 : currentPage
+        );
+
+        setGames(data);
+        setTotalPages(totalPages);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadGames();
+  }, [currentPage, selectedGenre]);
 
   return (
     <div className="custom-container flex flex-col gap-12 py-12">
       <div className="flex-grow grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-10 place-items-center">
-        {displayedGames.length > 0 ? (
-          displayedGames.map((game) => <GameItem key={game.id} game={game} />)
-        ) : (
-          <p>No games found for the selected genre.</p>
-        )}
+        {games.length > 0 &&
+          games.map((game) => <GameItem key={game.id} game={game} />)}
       </div>
-      {/* Load More Button */}
-      {displayedGames.length < filteredGames.length && (
-        <div className="flex items-start justify-center 2xl:justify-start">
-          <Button
-            onClick={handleLoadMore}
-            className="w-[327px] md:w-auto px-6 py-3 bg-secondary text-white text-base rounded-lg"
-          >
-            SEE MORE
-          </Button>
+
+      {!isLoading && (
+        <div className="flex items-start justify-center 2xl:justify-end">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={onPageChange}
+          />
         </div>
       )}
-      <Spinner isLoading={isLoading} />
+
+      <div className="flex justify-center items-center w-full h-full">
+        <Spinner isLoading={isLoading} />
+      </div>
     </div>
   );
 };
