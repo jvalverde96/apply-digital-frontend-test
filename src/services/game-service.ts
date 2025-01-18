@@ -4,7 +4,7 @@ export const fetchGames = async (
   genre: string | null,
   page: number = 1
 ): Promise<ApiResponse> => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || '';
   const url = new URL(baseUrl);
 
   if (genre) url.searchParams.set('genre', genre);
