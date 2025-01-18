@@ -33,7 +33,7 @@ const OrderSummary = () => {
         {/* Order Total */}
         <div className="flex items-center justify-between gap-14">
           <p className="text-xl	font-bold">Order Total</p>
-          <p>${calculateOrderTotal()}</p>
+          <p>${calculateOrderTotal().toFixed(2)}</p>
         </div>
       </div>
       <Button className="px-6 py-4 bg-secondary text-white text-base rounded-lg">
