@@ -23,13 +23,22 @@ const GameItem = ({ game }: GameItemProps) => {
 
   return (
     <div className="flex flex-col w-[327px] sm:w-[380px] h-[436px] border-[0.5px] rounded-2xl p-6 gap-5">
-      <Image
-        alt=""
-        width={332}
-        height={240}
-        src={game.image}
-        className="w-[332px] h-[240px] rounded-tl-2xl	rounded-tr-2xl"
-      />
+      <>
+        <Image
+          alt=""
+          width={332}
+          height={240}
+          src={game.image}
+          className="w-[332px] h-[240px] rounded-tl-2xl	rounded-tr-2xl object-cover"
+        />
+        {/* New Badge */}
+        {game.isNew && (
+          <span className="z-50 m-3 absolute bg-[#F5F5F4] text-sm px-3 py-2 rounded-md shadow">
+            New
+          </span>
+        )}
+      </>
+
       <div className="flex flex-col gap-3">
         <p className="text-sm	leading-4 font-bold text-text-secondary">
           {game.genre.toLocaleUpperCase()}
