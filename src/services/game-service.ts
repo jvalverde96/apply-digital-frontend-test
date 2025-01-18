@@ -1,10 +1,11 @@
 import { ApiResponse } from '@/utils/endpoint';
 
-export async function fetchGames(
+export const fetchGames = async (
   genre: string | null,
   page: number = 1
-): Promise<ApiResponse> {
-  const url = new URL('/api/games', window.location.origin);
+): Promise<ApiResponse> => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const url = new URL(baseUrl);
 
   if (genre) url.searchParams.set('genre', genre);
 
@@ -17,4 +18,4 @@ export async function fetchGames(
   }
 
   return response.json();
-}
+};
