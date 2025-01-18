@@ -11,11 +11,15 @@ export const fetchGames = async (
 
   url.searchParams.set('page', page.toString());
 
-  const response = await fetch(url.toString());
+  try {
+    const response = await fetch(url.toString());
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch games: ${response.statusText}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch games: ${response.statusText}`);
+    }
+
+    return response.json();
+  } catch (error: any) {
+    throw new Error(`Failed to fetch games: ${error.message}`);
   }
-
-  return response.json();
 };
