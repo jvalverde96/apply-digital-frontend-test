@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 import Image from 'next/image';
 
 import React from 'react';
+import Wrapper from '../shared/wrapper';
 
 interface CartItemProps {
   game: Game;
@@ -19,7 +20,7 @@ const CartItem = ({ game, index, totalItems }: CartItemProps) => {
   };
 
   return (
-    <div
+    <Wrapper
       className={`flex flex-col py-5 px-4 gap-6 ${
         index + 1 !== totalItems ? 'border-b' : ''
       } sm:flex-row`}
@@ -52,7 +53,7 @@ const CartItem = ({ game, index, totalItems }: CartItemProps) => {
           ${game.price}
         </p>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

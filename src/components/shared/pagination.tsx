@@ -1,3 +1,5 @@
+import Wrapper from './wrapper';
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -12,7 +14,7 @@ const Pagination = ({
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div className="flex items-center justify-center space-x-2 mt-4">
+    <Wrapper className="flex items-center justify-center space-x-2 mt-4">
       {/* Previous Button */}
       <button
         onClick={() => onPageChange(currentPage - 1)}
@@ -53,7 +55,7 @@ const Pagination = ({
       >
         Next
       </button>
-    </div>
+    </Wrapper>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Wrapper from '../shared/wrapper';
 
 interface OrderDetailProps {
   name: string;
@@ -7,10 +8,10 @@ interface OrderDetailProps {
 
 const OrderDetail = ({ name, price }: OrderDetailProps) => {
   return (
-    <div className="flex items-center justify-between gap-14">
+    <Wrapper className="flex items-center justify-between gap-14">
       <p>{name}</p>
       <p>${price}</p>
-    </div>
+    </Wrapper>
   );
 };
 

@@ -3,6 +3,7 @@ import React from 'react';
 import OrderDetail from './order-detail';
 import { Game } from '@/utils/endpoint';
 import Button from '../shared/button';
+import Wrapper from '../shared/wrapper';
 
 const OrderSummary = () => {
   const { cart } = useCartContext();
@@ -12,7 +13,7 @@ const OrderSummary = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10">
+    <Wrapper className="flex flex-col gap-10">
       <div className="border flex flex-col gap-8 py-8 px-6 rounded-lg md:min-w-[600px]">
         {/* Heading */}
         <div className="flex flex-col gap-3">
@@ -38,7 +39,7 @@ const OrderSummary = () => {
       <Button className="px-6 py-4 bg-secondary text-white text-base rounded-lg">
         Checkout
       </Button>
-    </div>
+    </Wrapper>
   );
 };
 

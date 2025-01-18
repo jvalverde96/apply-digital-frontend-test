@@ -4,6 +4,7 @@ import useCartContext from '@/context/cart/useCartContext';
 import { Game } from '@/utils/endpoint';
 import Image from 'next/image';
 import Button from '../shared/button';
+import Wrapper from '../shared/wrapper';
 
 interface GameItemProps {
   game: Game;
@@ -22,7 +23,7 @@ const GameItem = ({ game }: GameItemProps) => {
   };
 
   return (
-    <div className="flex flex-col w-[327px] sm:w-[380px] h-[436px] border-[0.5px] rounded-2xl p-6 gap-5">
+    <Wrapper className="flex flex-col w-[327px] sm:w-[380px] h-[436px] border-[0.5px] rounded-2xl p-6 gap-5">
       <>
         <Image
           alt=""
@@ -55,7 +56,7 @@ const GameItem = ({ game }: GameItemProps) => {
       >
         {!itemExists(game.id) ? 'ADD TO CART' : 'REMOVE FROM CART'}
       </Button>
-    </div>
+    </Wrapper>
   );
 };
 

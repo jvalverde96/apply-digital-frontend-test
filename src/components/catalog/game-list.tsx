@@ -7,6 +7,7 @@ import Spinner from '../shared/spinner';
 import { fetchGames } from '@/services/game-service';
 import { useGenreContext } from '@/context/genre/useGenreContext';
 import Pagination from '../shared/pagination';
+import Wrapper from '../shared/wrapper';
 
 const GameList = () => {
   const [games, setGames] = useState<Game[]>([]);
@@ -41,7 +42,7 @@ const GameList = () => {
   }, [currentPage, selectedGenre]);
 
   return (
-    <div className="custom-container flex flex-col gap-12 py-12">
+    <Wrapper className="flex flex-col gap-12 py-12">
       <div className="flex-grow grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-10 place-items-center">
         {games.length > 0 &&
           games.map((game) => <GameItem key={game.id} game={game} />)}
@@ -60,7 +61,7 @@ const GameList = () => {
       <div className="flex justify-center items-center w-full h-full">
         <Spinner isLoading={isLoading} />
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

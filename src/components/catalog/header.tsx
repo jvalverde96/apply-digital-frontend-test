@@ -4,6 +4,7 @@ import { useGenreContext } from '@/context/genre/useGenreContext';
 import { availableFilters } from '@/utils/endpoint';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
+import Wrapper from '../shared/wrapper';
 
 const CatalogHeader = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const CatalogHeader = () => {
   };
 
   return (
-    <div className="custom-container flex flex-col py-12 gap-12">
+    <Wrapper className="flex flex-col py-12 gap-12">
       <h1 className="font-bold text-4xl">Top Sellers</h1>
       <div className="flex items-center justify-end gap-6">
         <p>Genre</p>
@@ -50,7 +51,7 @@ const CatalogHeader = () => {
           ))}
         </select>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 
