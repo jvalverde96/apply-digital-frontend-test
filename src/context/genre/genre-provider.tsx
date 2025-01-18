@@ -10,11 +10,6 @@ export const GenreProvider = ({ children }: { children: ReactNode }) => {
 
   const setGenre = (genre: string | null) => {
     setSelectedGenre(genre);
-    if (genre) {
-      localStorage.setItem('selectedGenre', genre);
-    } else {
-      localStorage.removeItem('selectedGenre');
-    }
   };
 
   return (
