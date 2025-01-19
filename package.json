@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "commit": "npx git-cz"
+    "commit": "npx git-cz",
+    "tests": "npx jest"
   },
   "dependencies": {
     "lucide-react": "^0.471.1",
