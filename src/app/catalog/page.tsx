@@ -8,7 +8,7 @@ const Catalog = () => {
     <Suspense>
       <Wrapper>
         <CatalogHeader />
-        <div className="border  !p-0 !m-0"></div>
+        <div className="border-[0.5px]"></div>
         <GameList />
       </Wrapper>
     </Suspense>

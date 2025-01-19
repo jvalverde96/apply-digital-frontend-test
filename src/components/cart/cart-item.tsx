@@ -22,7 +22,7 @@ const CartItem = ({ game, index, totalItems }: CartItemProps) => {
   return (
     <Wrapper
       className={`flex flex-col py-5 px-4 gap-6 ${
-        index + 1 !== totalItems ? 'border-b' : ''
+        index + 1 !== totalItems ? 'border-b-[0.5px]' : ''
       } sm:flex-row`}
     >
       <div className="flex justify-between">
