@@ -42,7 +42,7 @@ const GameList = () => {
   }, [currentPage, selectedGenre]);
 
   return (
-    <Wrapper className="flex flex-col gap-12 py-12">
+    <Wrapper className="custom-container flex flex-col gap-12 py-12">
       <div className="flex-grow grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-10 place-items-center">
         {games.length > 0 &&
           games.map((game) => <GameItem key={game.id} game={game} />)}

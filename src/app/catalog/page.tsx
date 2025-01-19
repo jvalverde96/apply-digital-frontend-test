@@ -6,9 +6,9 @@ import { Suspense } from 'react';
 const Catalog = () => {
   return (
     <Suspense>
-      <Wrapper className="custom-container">
+      <Wrapper>
         <CatalogHeader />
-        <div className="border"></div>
+        <div className="border  !p-0 !m-0"></div>
         <GameList />
       </Wrapper>
     </Suspense>

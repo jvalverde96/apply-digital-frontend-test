@@ -36,12 +36,14 @@ const CartItem = ({ game, index, totalItems }: CartItemProps) => {
         <X onClick={handleRemoveItem} className="cursor-pointer sm:hidden" />
       </div>
 
-      <div className="flex flex-col gap-3 mt-2 w-[318px]">
+      <div className="flex flex-col gap-3 mt-2">
         <p className="text-sm leading-4 font-bold text-text-secondary">
           {game.genre.toLocaleUpperCase()}
         </p>
         <p className="text-xl font-bold">{game.name}</p>
-        <p className="text-sm font-light text-secondary">{game.description}</p>
+        <p className="text-sm font-light text-secondary break-words">
+          {game.description}
+        </p>
       </div>
 
       <div className="flex flex-col items-end justify-between ml-auto">

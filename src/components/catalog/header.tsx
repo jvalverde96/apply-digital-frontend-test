@@ -30,15 +30,15 @@ const CatalogHeader = () => {
   };
 
   return (
-    <Wrapper className="flex flex-col py-12 gap-12">
+    <Wrapper className="custom-container flex flex-col py-12 gap-12">
       <h1 className="font-bold text-4xl">Top Sellers</h1>
-      <div className="flex items-center justify-end gap-6">
+      <div className="flex items-center justify-start gap-6 sm:justify-end sm:w-auto">
         <p>Genre</p>
         <span>|</span>
         <select
           value={searchParams?.get('genre') || 'all'}
           onChange={handleGenreChange}
-          className="text-gray-700 rounded-md p-1"
+          className="text-gray-700 rounded-md p-1 w-full sm:w-auto"
         >
           <option value="all">All</option>
           {availableFilters.map((option) => (

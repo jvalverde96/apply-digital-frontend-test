@@ -6,7 +6,7 @@ interface WrapperProps {
 }
 
 const Wrapper = ({ children, className = '' }: WrapperProps) => {
-  return <div className={className}>{children}</div>;
+  return <div className={`${className}`}>{children}</div>;
 };
 
 export default Wrapper;
