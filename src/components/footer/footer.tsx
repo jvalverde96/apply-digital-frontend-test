@@ -1,16 +1,14 @@
 'use client';
 
 import { useGenreContext } from '@/context/genre/useGenreContext';
+import useHrefBuilder from '@/hooks/useHrefBuilder';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo } from 'react';
 
 const Footer = () => {
   const { selectedGenre } = useGenreContext();
 
-  const href = useMemo(() => {
-    return `catalog/${selectedGenre ? `?genre=${selectedGenre}` : ''}`;
-  }, [selectedGenre]);
+  const href = useHrefBuilder(selectedGenre);
 
   return (
     <footer className="bg-secondary bottom-0 left-0 right-0 mt-auto">

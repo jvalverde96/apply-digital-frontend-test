@@ -1,16 +1,14 @@
 'use client';
 
 import { useGenreContext } from '@/context/genre/useGenreContext';
+import useHrefBuilder from '@/hooks/useHrefBuilder';
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
-import { useMemo } from 'react';
 
 const Navbar = () => {
   const { selectedGenre } = useGenreContext();
 
-  const href = useMemo(() => {
-    return `catalog/${selectedGenre ? `?genre=${selectedGenre}` : ''}`;
-  }, [selectedGenre]);
+  const href = useHrefBuilder(selectedGenre);
 
   return (
     <header className="bg-header sticky top-0 left-0 z-10">

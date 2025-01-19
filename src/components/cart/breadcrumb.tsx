@@ -1,14 +1,12 @@
 import { useGenreContext } from '@/context/genre/useGenreContext';
+import useHrefBuilder from '@/hooks/useHrefBuilder';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import React, { useMemo } from 'react';
 
 const Breadcrumb = () => {
   const { selectedGenre } = useGenreContext();
 
-  const href = useMemo(() => {
-    return `catalog/${selectedGenre ? `?genre=${selectedGenre}` : ''}`;
-  }, [selectedGenre]);
+  const href = useHrefBuilder(selectedGenre);
 
   return (
     <Link href={href}>
