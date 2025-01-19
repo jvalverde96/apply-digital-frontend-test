@@ -67,6 +67,6 @@ This project is a responsive web application built to demonstrate proficiency in
 The app is deployed on Vercel and accessible at:
 [https://ad-frontend-test.vercel.app](https://apply-digital-frontend-test-three.vercel.app/)
 
-# Contact
+## Contact
 
 For any issues, please contact me at curly.dev.96@gmail.com
