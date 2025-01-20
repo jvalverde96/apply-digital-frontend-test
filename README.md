@@ -4,6 +4,8 @@
 
 This project is a responsive web application built to demonstrate proficiency in React and Next.js, adhering to the provided design and functionality requirements. It includes a catalog of games fetched from a local API, with features like genre-based filtering, pagination, and a shopping cart. The app is deployed on Vercel and designed to be both functional and visually appealing while following best practices in frontend development.
 
+Note: I implemented real pagination instead of the "see more" functionality, as the latter didn't align well with the concept of pagination. Additionally, the fetching logic was designed for a real pagination scenario, including support for total pages and the current page
+
 ## Features
 
 ### General
