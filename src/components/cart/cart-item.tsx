@@ -2,7 +2,6 @@ import useCartContext from '@/context/cart/useCartContext';
 import { Game } from '@/utils/endpoint';
 import { X } from 'lucide-react';
 import Image from 'next/image';
-
 import React from 'react';
 import Wrapper from '../shared/wrapper';
 
@@ -22,7 +21,7 @@ const CartItem = ({ game, index, totalItems }: CartItemProps) => {
   return (
     <Wrapper
       className={`flex flex-col py-5 px-4 gap-6 ${
-        index + 1 !== totalItems ? 'border-b-[0.5px]' : ''
+        index + 1 !== totalItems ? 'border-b' : ''
       } sm:flex-row`}
     >
       <div className="flex justify-between">
